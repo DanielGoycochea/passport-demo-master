@@ -1,0 +1,7 @@
+---
+  applications:
+    - instances: 1
+      name: sociallogindaniel24ene
+      memory: 128M
+      domain: mybluemix.net
+      host: sociallogindaniel24ene
