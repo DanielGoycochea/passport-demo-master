@@ -16,7 +16,7 @@ const User         = require('./models/user')
 const flash        = require('connect-flash')
   console.log(process.env.MONGODB)
 mongoose
-.connect(process.env.MONGODB, {useNewUrlParser: true})
+.connect("MONGODB = mongodb://danielgoycochea:Tricuricus1982@ds149059.mlab.com:49059/prueba", {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
