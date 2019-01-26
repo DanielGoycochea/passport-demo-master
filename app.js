@@ -14,9 +14,10 @@ const passport     = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const User         = require('./models/user')
 const flash        = require('connect-flash')
+const MongoStorage = require('connect-mongo')(session)
   console.log(process.env.MONGODB)
 mongoose
-.connect("mongodb://danielgoycochea:Tricuricus1982@ds149059.mlab.com:49059/prueba", {useNewUrlParser: true})
+.connect(process.env.MONGODB, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -37,7 +38,8 @@ app.use(cookieParser());
 app.use(session({
   secret: 'jafsjlafsjopafsjpofañnafslnkafsñklasf',
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  store: new MongoStorage({mongooseConnection: mongoose.connection})
 }))
 
 passport.serializeUser((user, callback)=>{
